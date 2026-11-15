@@ -1,0 +1,10 @@
+{
+  "name": "WeatherGuard AI",
+  "description": "Know the Weather. Prepare Before It Happens. Intelligent weather forecasting, cyclone preparedness, and AI safety advisory platform powered by Open-Meteo and OpenStreetMap.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

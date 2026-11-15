@@ -1,0 +1,140 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono, .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+/* Animated weather backdrop keyframes (compositor-only: transform & opacity) */
+@keyframes wg-rain-fall {
+  0% {
+    transform: translate3d(0, -10%, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45;
+  }
+  80% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate3d(-12px, 110%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes wg-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(18px, -8px, 0);
+  }
+}
+
+@keyframes wg-sun-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.65;
+  }
+}
+
+.animate-wg-rain {
+  animation: wg-rain-fall 1.4s linear infinite;
+}
+
+.animate-wg-drift {
+  animation: wg-drift 14s ease-in-out infinite;
+}
+
+.animate-wg-sun {
+  animation: wg-sun-pulse 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-wg-rain,
+  .animate-wg-drift,
+  .animate-wg-sun {
+    animation: none !important;
+  }
+}
+
+/* Ensure Leaflet map plays cleanly with dark/light themes and z-index */
+.leaflet-container {
+  font-family: var(--font-sans);
+  z-index: 1;
+}
+
+/* Accessibility: High-Contrast Mode */
+.high-contrast body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark.high-contrast body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.high-contrast section,
+.high-contrast aside,
+.high-contrast article,
+.high-contrast header {
+  border-color: #0f172a !important;
+  border-width: 1.5px;
+}
+
+.dark.high-contrast section,
+.dark.high-contrast aside,
+.dark.high-contrast article,
+.dark.high-contrast header {
+  border-color: #f8fafc !important;
+  border-width: 1.5px;
+}
+
+.high-contrast :focus-visible,
+:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+}
+
